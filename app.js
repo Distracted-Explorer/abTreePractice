@@ -933,9 +933,15 @@ angular.module('abTreePractice', ['d3', 'Enums', 'Tree'])
               valStr = (nodeVal == null) ? '' : nodeVal.toString();
               if ((lastKeyDown > 47 && lastKeyDown < 58) // number keys
                   || lastKeyDown == 189 // minus dash
-                  || lastKeyDown == 190) { // decimal point
+                  || lastKeyDown == 190 
+                  //key strok value for numpad and digits are different 
+                  || (lastKeyDown >= 96 && lastKeyDown <= 105)
+                  || lastKeyDown == 109
+                  || lastKeyDown == 110){ // decimal point
                 var leftSlice = valStr.slice(0, valCharIndex),
                     rightSlice = valStr.slice(valCharIndex, valStr.length),
+                    lastKeyDown = (lastKeyDown > 108 && lastKeyDown < 111) ? lastKeyDown - 64: lastKeyDown, //109 is for '-' and 110 is for '.'
+                    lastKeyDown = (lastKeyDown > 95 && lastKeyDown < 106) ? lastKeyDown - 48: lastKeyDown, //96 to 105 for 0 to 9 in numpad
                     lastKeyDown = (lastKeyDown > 188) ? (lastKeyDown - 144) : lastKeyDown,
                     newNum = String.fromCharCode(lastKeyDown);
                 valStr = leftSlice + newNum + rightSlice;
