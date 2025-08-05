@@ -817,13 +817,13 @@ angular.module('abTreePractice', ['d3', 'Enums', 'Tree'])
                 if (!scope.useAb) {
                   var val;
                   if (d.nodeType == TreeNodeTypeEnum.maxNode) {
-                    val = '≥ ' + d.beta.toString().replace('Infinity', '∞');
+                    val = 'e ' + d.beta.toString().replace('Infinity', '');
                   } else if (d.nodeType == TreeNodeTypeEnum.minNode) {
-                    val = '≤ ' + d.alpha.toString().replace('Infinity', '∞');
+                    val = 'd ' + d.alpha.toString().replace('Infinity', '');
                   }
                   return 'c ' + val;
                 }
-                return 'α: ' + d.alpha.toString().replace('Infinity', '∞');
+                return '�: ' + d.alpha.toString().replace('Infinity', '');
               });
             vertex.select('text.beta')
               .attr('x', function(d) { return d.x + 45 })
@@ -831,7 +831,7 @@ angular.module('abTreePractice', ['d3', 'Enums', 'Tree'])
               .text(function(d) {
                 if (d.alpha == null || d.beta == null) { return; };
                 if (!scope.useAb) { return; };
-                return 'β: ' + d.beta.toString().replace('Infinity', '∞');
+                return '�: ' + d.beta.toString().replace('Infinity', '');
               });
             // update existing cursor
             vertex.select('rect.cursor')
